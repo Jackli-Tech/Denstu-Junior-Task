@@ -36,17 +36,23 @@ timeline
   .from(".front-Title", { opacity: 0 })
 
   .to(".front-Title", { duration: 2, opacity: 0 }, 1)
-  .fromTo(".main", { yPercent: 0 }, { duration: 2, yPercent: 100 }, 1)
+  .to(".line", { duration: 2, bottom: "-50px", ease: Linear.easeNone }, 1)
   .to(
-    counter,
+    ".main",
+
     {
-      duration: 1,
-      x: 1040346,
-      onUpdate: function () {
-        number.innerHTML = "$" + numberWithCommas(Math.ceil(counter.x));
-      },
-      ease: Circ.easeOut,
+      duration: 2,
+      backgroundPosition: "0% 100vh",
+      //autoRound:false,
+      ease: Linear.easeNone,
     },
-    3
+    1
   )
+  .to(counter, {
+    duration: 1,
+    x: 1040346,
+    onUpdate: function () {
+      number.innerText = "$" + numberWithCommas(Math.ceil(counter.x));
+    },
+  })
   .from(".bottom_text", { duration: 2, opacity: 0 }, 3);

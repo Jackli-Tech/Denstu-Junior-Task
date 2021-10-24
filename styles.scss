@@ -1,29 +1,39 @@
+$textPrimaryColor: white;
+$textSecondaryColor: black;
+$backgroundPrimaryColor: #b6cc68;
+$backgroundSecondaryColor: #2b5d3b;
 @font-face {
   font-family: "Exo";
   src: url("./assets/fonts/Exo-Light.ttf") format("truetype");
   font-weight: normal;
 }
-
 @font-face {
   font-family: "NoticiaText";
   src: url("./assets/fonts/NoticiaText-Bold.ttf") format("truetype");
 }
+@mixin maxWidth {
+  @media (max-width: 1080px) {
+    @content;
+  }
+}
 
+@mixin minWidth {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 body {
   font-family: "Exo";
-  color: white;
+  color: $textPrimaryColor;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
 }
-
 .front-Title {
   font-size: 2rem;
   font-weight: lighter;
@@ -34,45 +44,31 @@ body {
   top: 50%;
   margin-top: -100px;
   width: 200px;
-}
-
-@media (min-width: 1920px) {
-  .front-Title {
+  @include minWidth {
+    width: 400px;
+    margin-left: -200px;
+    margin-top: -200px;
+    font-size: 5rem;
+  }
+  @include maxWidth {
     width: 400px;
     margin-left: -200px;
     margin-top: -200px;
     font-size: 5rem;
   }
 }
-
-@media (max-width: 1080px) {
-  .front-Title {
-    width: 400px;
-    margin-left: -200px;
-    margin-top: -200px;
-    font-size: 5rem;
-  }
-}
-
 .number_heading {
-  align-items: center;
   position: absolute;
   font-size: 5rem;
   text-align: center;
   width: 100%;
   top: 10%;
   font-family: "NoticiaText";
-  text-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
-}
-
-@media (min-width: 1920px) {
-  .number_heading {
+  text-shadow: 0 0 50px gray;
+  @include minWidth {
     font-size: 17rem;
   }
-}
-
-@media (max-width: 1080px) {
-  .number_heading {
+  @include maxWidth {
     font-size: 10rem;
   }
 }
@@ -83,32 +79,23 @@ body {
   text-align: center;
   width: 100%;
   bottom: 20%;
-  color: black;
-}
-
-@media (min-width: 1920px) {
-  .bottom_text {
+  color: $textSecondaryColor;
+  @include minWidth {
     font-size: 9rem;
   }
-}
-
-@media (max-width: 1080px) {
-  .bottom_text {
+  @include maxWidth {
     font-size: 9rem;
   }
 }
 
 .main {
-  position: relative;
+  position: absolute;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(#2b5d3b, #2b5d3b) no-repeat 0px 0px;
+  background-color: $backgroundSecondaryColor;
+  .line {
+    background-color: $backgroundPrimaryColor;
+    height: 50px;
+    width: 100%;
+  }
 }
-
-.main .line {
-  position: absolute;
-  background-color: #b6cc68;
-  height: 50px;
-  width: 100%;
-}
-/*# sourceMappingURL=styles.css.map */
